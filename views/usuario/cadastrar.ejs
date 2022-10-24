@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Usuário</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cadastro de Usuário</h1>
+        <% if (erro) { %>
+            <div style="background-color: lightgray; color: red;">E-mail já cadastrado!</div>
+        <% } %>
+        <form action="/usuarios" method="post">
+            <input type="hidden" name="id" value="<%= usuario.id %>">
+            <div <%= escondido %> class="mb-3">
+                <label class="form-label">E-mail</label>
+                <input type="email" value="<%= usuario.email %>" required class="form-control" name="email">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" value="<%= usuario.nome %>" required class="form-control" name="nome">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <input type="password" required class="form-control" name="senha">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </div>
+        </form>
+        <div>
+            <a href="/usuarios">Voltar</a>
+        </div>
+        <%- include("../partials/rodape.ejs") %>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de usuários</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Listagem de usuários</h3>
+        <a class="btn btn-purple" style="background-color:#D8BFD8" href="/usuarios/cadastrar">Cadastrar</a>
+        <% if (mensagem != undefined) { 
+            const css = `style=background-color:lightgrey;color:${cor}`; %>
+            <div <%= css %>>
+                <%= mensagem %>
+            </div>
+        <% } %>
+        <table class="table">
+            <tr>
+                <th>E-mail</th>
+                <th>Nome</th>
+                <th>Detalhar</th>
+                <th>Atualizar</th>
+                <th>Remover</th>
+            </tr>
+            <% for(let usuario of lista) { %>
+                <tr>
+                    <td>
+                        <%= usuario.email %>
+                    </td>
+                    <td>
+                        <%= usuario.nome %>
+                    </td>
+                    <td><a class="btn btn-secondary" href="/usuarios/<%= usuario.email %>">Detalhar</a></td>
+                    <td><a class="btn btn-warning" href="/usuarios/cadastrar/<%= usuario.email %>">Atualizar</a></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Deseja realmente remover?')" href="/usuarios/remover/<%= usuario.email %>">Remover</a></td>
+                </tr>
+                <% } %>
+        </table>
+        <div>
+            <a href="/">Voltar</a>
+        </div>
+        <%- include("../partials/rodape.ejs") %>
+    </div>
+</body>
+
+</html>

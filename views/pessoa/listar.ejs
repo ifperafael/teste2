@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de pessoas</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Listagem de pessoas</h3>
+        <a class="btn btn-purple" style="background-color:#D8BFD8" href="/pessoas/cadastrar">Cadastrar</a>
+        <% if (mensagem != undefined) { 
+            const css = `style=background-color:lightgrey;color:${cor}`; %>
+            <div <%= css %>>
+                <%= mensagem %>
+            </div>
+        <% } %>
+        <table class="table">
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Detalhar</th>
+                <th>Atualizar</th>
+                <th>Remover</th>
+            </tr>
+            <% for(let pessoa of lista) { %>
+                <tr>
+                    <td>
+                        <%= pessoa.codigo %>
+                    </td>
+                    <td>
+                        <%= pessoa.nome %>
+                    </td>
+                    <td>
+                        <%= pessoa.idade %>
+                    </td>
+                    <td><a class="btn btn-secondary" href="/pessoas/<%= pessoa.codigo %>">Detalhar</a></td>
+                    <td><a class="btn btn-warning" href="/pessoas/cadastrar/<%= pessoa.codigo %>">Atualizar</a></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Deseja realmente remover?')" href="/pessoas/remover/<%= pessoa.codigo %>">Remover</a></td>
+                </tr>
+                <% } %>
+        </table>
+        <div>
+            <a href="/">Voltar</a>
+        </div>
+        <%- include("../partials/rodape.ejs") %>
+    </div>
+</body>
+
+</html>

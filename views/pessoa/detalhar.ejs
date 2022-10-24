@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pessoa</title>
+    <%- include("../partials/cabecalho.ejs") %>
+</head>
+
+<body>
+    <div class="container">
+        <% if (resultado==undefined) { %>
+            <div>Pessoa não encontrada</div>
+            <% } else { %>
+                <div>
+                    <b>Código:</b>
+                    <%= resultado.codigo %>
+                </div>
+                <div>
+                    <b>Nome:</b>
+                    <%= resultado.nome %>
+                </div>
+                <div>
+                    <b>Idade:</b>
+                    <%= resultado.idade %>
+                </div>
+                <% } %>
+                    <a href="/pessoas">Voltar</a>
+                    <%- include("../partials/rodape.ejs") %>
+    </div>
+</body>
+
+</html>
